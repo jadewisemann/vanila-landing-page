@@ -194,6 +194,8 @@ body {
 }
 
 .sidebar > .close-area {
+  top: 0;
+  position: absolute;
   transition: opacity var(--hamburger--animation-timing);
   opacity: 0;
   display: flex;
@@ -250,9 +252,8 @@ nav > .nav-item-wrapper {
   text-align: center;
 }
 
-nav > .social-wrapper {
-  position: relative;
-  bottom: 32px;
+.social-wrapper {
+  margin-bottom: 32px;
   width: 100%;
   display: flex;
   justify-content: space-evenly;

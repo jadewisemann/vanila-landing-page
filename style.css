@@ -166,7 +166,7 @@ body {
 }
 
 .hamburger:has(input:checked:hover) + .sidebar> .close-area {
-  color: red;
+  opacity: 1;
 }
 
 .hamburger:has(input:checked):hover::after {
@@ -192,15 +192,49 @@ body {
   translate: 100%;
   transition: translate var(--hamburger--animation-timing);
 }
-.sidebar > .close-area {
 
+.sidebar > .close-area {
+  transition: opacity var(--hamburger--animation-timing);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  height: calc(
+    (var(--hamburger--margin) * 2)
+    + (var(--hamburger--bar-height) * 3)
+    + (var(--hamburger--gap) * 2))
 }
+
+.close-area > .close-tag {
+  display: block;
+  width:fit-content;
+  height: 100%;
+  rotate: 90deg;
+  transform-origin: center;
+  margin: 80px;
+}
+
+.close-area > .close-tag rect,
+.close-area > .close-tag path {
+  fill: gold;
+}
+.close-area > span {
+  position: absolute;
+  left: 96px;
+  font-size: .8em;
+  color: white;
+  font-weight: 600;
+}
+
+
 .sidebar > nav {
   width: 100%;
-  height: 100%;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
+
 nav > .nav-item-wrapper {
   width: 100%;
   flex-grow: 1;

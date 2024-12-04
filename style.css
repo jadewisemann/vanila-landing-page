@@ -1,0 +1,317 @@
+/* font  */
+
+@font-face {
+  font-family: Interop;
+  src: url(https://rsms.me/inter/font-files/InterVariable.woff2?v=4.1);
+  font-weight: 100 800;
+  font-style: normal italic;
+}
+
+.interop {
+  font-family: Interop;
+}
+
+/* declare variable */
+:root {
+  --pi: 1.41421356237;
+  --gold: #c29525;
+  --foreground: white;
+  --background: #333;
+
+  --scroll-bar--width:16px;
+
+  --hamburger--bar-width: 32px;
+  --hamburger--bar-height: 4px;
+  --hamburger--gap: 6px;
+  --hamburger--margin: 32px;
+  --hamburger--animation-timing: 200ms ease-in-out;
+
+  --hamburger--height: calc(
+    var(--hamburger--bar-height)*3
+    + var(--hamburger--gap) * 2);
+  
+  --sidebar-width: 30vw;
+}
+
+/* initial setting */
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Interop;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* loading screen */
+.overflow-hidden {
+  overflow: hidden;
+}
+
+#loading-screen {
+  
+  width: 100%;    
+  height: 100%;
+  top: 0;
+  left: 0;
+  
+  position: fixed;
+  z-index: 99;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  background: gray;
+  color: white;
+  opacity: 1;
+
+  text-align: center;
+}
+
+/* hamburger button */
+.hamburger {
+  --x-width: calc((var(--hamburger--height))*var(--pi));
+
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: var(--hamburger--gap);
+  width: max-content;
+  top: var(--hamburger--margin);
+  right: var(--hamburger--margin);
+  z-index: 2;
+
+  cursor: pointer;
+
+  transition: translate var(--hamburger--animation-timing);
+}
+
+.hamburger:has(input:checked) {
+  --foreground: #333;
+  --background: white;
+}
+
+.hamburger::after, 
+.hamburger::before,
+.hamburger input {
+  content: "";
+
+  width: var(--hamburger--bar-width);
+  height: var(--hamburger--bar-height);
+  border-radius: 9999px;
+
+  background-color: var(--foreground);
+  opacity: .6;
+
+  transform-origin: left center;
+  transition: 
+    opacity var(--hamburger--animation-timing),
+    width var(--hamburger--animation-timing),
+    rotate var(--hamburger--animation-timing),
+    translate var(--hamburger--animation-timing),
+    background-color var(--hamburger--animation-timing);
+}
+
+.hamburger input {
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  pointer-events: none;
+  transition: 
+    opacity var(--hamburger--animation-timing),
+    width var(--hamburger--animation-timing),
+    rotate var(--hamburger--animation-timing),
+    translate var(--hamburger--animation-timing),
+    background-color var(--hamburger--animation-timing);
+}
+
+.hamburger:has(input:checked)::before {
+  opacity: 1;
+  rotate: 45deg;
+  width: var(--x-width);
+  translate: 0 calc(var(--hamburger--bar-height) / -2);
+}
+
+.hamburger:has(input:checked)::after {
+  opacity: 1;
+  rotate: -45deg;
+  width: var(--x-width);
+  translate: 0 calc(var(--hamburger--bar-height) / 2);
+}
+
+.hamburger:has(input:checked) {
+  translate: calc(var(--sidebar-width) * (-1)
+    + var(--x-width)
+    + var(--hamburger--margin) * 2 
+    ) 0;
+  transition: translate var(--hamburger--animation-timing);
+}
+
+.hamburger input:checked {
+  opacity: 0;
+  width: 0;
+}
+
+.hamburger:has(input:checked) + .sidebar {
+  translate: 0;
+}
+
+.hamburger:has(input:checked:hover) + .sidebar> .close-area {
+  color: red;
+}
+
+.hamburger:has(input:checked):hover::after {
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  right: 0;
+
+  max-width: var(--sidebar-width);
+  width: var(--sidebar-width);
+  height: 100vh;
+  min-height: 100vh;
+
+  color: var(--background);
+  background-color: var(--foreground);
+
+  translate: 100%;
+  transition: translate var(--hamburger--animation-timing);
+}
+.sidebar > .close-area {
+
+}
+.sidebar > nav {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+nav > .nav-item-wrapper {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-item-wrapper > .nav-item {
+  margin: 12px 0;
+  font-size: 1.8em;
+  text-align: center;
+}
+
+nav > .social-wrapper {
+  position: relative;
+  bottom: 32px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.social-wrapper > .social-icon {
+  width: 32px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  padding: 4px;
+}
+
+/* fly-in animation */
+.fly-in-object-parent {}
+
+.fly-in-object {
+  opacity: 0;
+  transform: translateY(200px);
+}
+
+.fly-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    transform .8s ease-in-out,
+    opacity .8s ease-in-out;
+}
+
+/* full page container */
+
+.full-page--container {
+  display: flex;
+  width:100vw - var(--scroll-bar--width);
+  height:100vh;
+}
+
+.full-page--container#main  {
+  display: flex;
+  flex-direction: column;
+  background-color: silver;
+}
+
+#main > .main--header {
+}
+
+.main--content  {
+  width: 100%;
+  height: 100%;
+}
+
+.main-text--wrapper {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 12%;
+}
+
+
+.main-text--wrapper > * {
+  color: white;
+}
+.main-text--wrapper > .main-title {
+  font-size: 2em;
+  margin-bottom: 12px;
+}
+
+.main-text--wrapper > .main-content {
+  font-size: 1.2em;
+  margin-bottom: 12px;
+}
+
+
+.main-text--wrapper > .main-button {
+  
+  padding: 12px;
+  border: none;
+  background-color: var(--gold);
+}
+
+.full-page--container#about {    
+  background-color: blue;
+}
+.full-page--container#team {
+  background-color: green;
+}
+.full-page--container.full-page#contact {
+  background-color: gray;
+}
+
+
+body > * {
+  border: 1px solid yellowgreen;
+}

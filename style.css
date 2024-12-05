@@ -39,6 +39,7 @@
   padding:0;
   box-sizing:border-box;
   font-family: Interop;
+  user-select: none;
 }
 
 body {
@@ -247,6 +248,7 @@ nav > .nav-item-wrapper {
 }
 
 .nav-item-wrapper > .nav-item {
+
   margin: 12px 0;
   text-align: center;
   font-size: 1.8em;
@@ -265,7 +267,9 @@ nav > .nav-item-wrapper {
   background-position: 0 0; 
 }
 
+
 .social-wrapper {
+  cursor: pointer;
   margin-bottom: 32px;
   width: 100%;
   display: flex;
@@ -282,7 +286,7 @@ nav > .nav-item-wrapper {
   border-radius: 50%;
   padding: 4px;
   border: 0;
-  transition: background ease .5s;
+  transition: background ease .3as;
 }
 .social-icon img {
   filter: invert(100%);

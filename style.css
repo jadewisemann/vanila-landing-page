@@ -250,6 +250,18 @@ nav > .nav-item-wrapper {
   margin: 12px 0;
   text-align: center;
   font-size: 1.8em;
+  background: linear-gradient(to right, var(--gold) 50%, #333 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0; 
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: background-position ease .8s;
+}
+
+
+.nav-item:hover {
+  background-position: 0 0; 
 }
 
 .social-wrapper {

@@ -75,9 +75,11 @@ const smoothScroll = (targetElements, targetIndex, scrollDuration) => {
 }
 
 const navItems = document.querySelectorAll(".nav-item")
-
+const inputCheckbox = document.getElementById("input-checkbox")
 navItems.forEach((navItem, index) => {
   navItem.addEventListener("click", () => {
+    inputCheckbox.checked=false
     smoothScroll(fullPageContainers, index, scrollDuration)
+
   })
 })

@@ -27,17 +27,17 @@ const
   body = document.body,
   fullPageContainers = document.querySelectorAll(".full-page--container")
 
-let currentIndex = 0, scrollDuration = 600
+let nextIndex = 0, scrollDuration = 600
 
 // add "wheel" eventlistener to body 
 body.addEventListener('wheel', event => {
   event.preventDefault()
   
-  currentIndex = event.deltaY > 0
-    ? Math.min(currentIndex + 1, fullPageContainers.length - 1)
-    : Math.max(currentIndex - 1, 0)
+  nextIndex = event.deltaY > 0
+    ? Math.min(nextIndex + 1, fullPageContainers.length - 1)
+    : Math.max(nextIndex - 1, 0)
 
-  smoothScroll(fullPageContainers, currentIndex, scrollDuration)
+  smoothScroll(fullPageContainers, nextIndex, scrollDuration)
 }, {passive: false})
 
 // scroll animation
@@ -73,3 +73,11 @@ const smoothScroll = (targetElements, targetIndex, scrollDuration) => {
   
   requestAnimationFrame(animateScroll)
 }
+
+const navItems = document.querySelectorAll(".nav-item")
+
+navItems.forEach((navItem, index) => {
+  navItem.addEventListener("click", () => {
+    smoothScroll(fullPageContainers, index, scrollDuration)
+  })
+})

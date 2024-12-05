@@ -84,7 +84,7 @@ navItems.forEach((navItem, index) => {
 
   })
 })
-const profileCardImgs = document.querySelectorAll(".profile-img")
+const profileCardImgs = document.querySelectorAll(".profile-card")
 profileCardImgs.forEach(profileCardImg => {
   profileCardImg.addEventListener("mousemove", event => {
     const
@@ -93,12 +93,14 @@ profileCardImgs.forEach(profileCardImg => {
       y = event.clientY - rectangle.top,
       centerX = rectangle.width / 2,
       centerY = rectangle.height / 2,
-      rotateX = ((y - centerY) / centerY) * 10,
-      rotateY = ((x - centerX) / centerX) * 10
+      rotateX = ((y - centerY) / centerY) * 20,
+      rotateY = ((x - centerX) / centerX) * 20
     profileCardImg.style.transform = `rotateX(${rotateX}deg) rotateY(${-rotateY}deg)`
   })
   
   profileCardImg.addEventListener("mouseleave", () => {
     profileCardImg.style.transform = "rotateX(0deg) rotateY(0deg)";
+    setTimeout(() => {
+    }, 500)
   })
 })

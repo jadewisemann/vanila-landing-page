@@ -250,13 +250,14 @@ nav > .nav-item-wrapper {
   margin: 12px 0;
   text-align: center;
   font-size: 1.8em;
-  background: linear-gradient(to right, var(--gold) 50%, #333 50%);
+  background: linear-gradient(to right, goldenrod 50%, #333 50%);
   background-size: 200% 100%;
   background-position: 100% 0; 
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   transition: background-position ease .8s;
+  cursor: pointer;
 }
 
 
@@ -272,10 +273,23 @@ nav > .nav-item-wrapper {
 }
 
 .social-wrapper > .social-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 32px;
-  aspect-ratio: 1 / 1;
+  height: 32px;
+  background: gray;
   border-radius: 50%;
   padding: 4px;
+  border: 0;
+  transition: background ease .5s;
+}
+.social-icon img {
+  filter: invert(100%);
+  height: 16px
+}
+.social-icon:hover {
+  background: goldenrod;
 }
 
 /* fly-in animation */

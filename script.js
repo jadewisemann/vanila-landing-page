@@ -74,6 +74,7 @@ const smoothScroll = (targetElements, targetIndex, scrollDuration) => {
   requestAnimationFrame(animateScroll)
 }
 
+// nav item click to scroll
 const navItems = document.querySelectorAll(".nav-item")
 const inputCheckbox = document.getElementById("input-checkbox")
 navItems.forEach((navItem, index) => {
@@ -81,5 +82,23 @@ navItems.forEach((navItem, index) => {
     inputCheckbox.checked=false
     smoothScroll(fullPageContainers, index, scrollDuration)
 
+  })
+})
+const profileCardImgs = document.querySelectorAll(".profile-img")
+profileCardImgs.forEach(profileCardImg => {
+  profileCardImg.addEventListener("mousemove", event => {
+    const
+      rectangle = profileCardImg.getBoundingClientRect(),
+      x = event.clientX - rectangle.left,
+      y = event.clientY - rectangle.top,
+      centerX = rectangle.width / 2,
+      centerY = rectangle.height / 2,
+      rotateX = ((y - centerY) / centerY) * 10,
+      rotateY = ((x - centerX) / centerX) * 10
+    profileCardImg.style.transform = `rotateX(${rotateX}deg) rotateY(${-rotateY}deg)`
+  })
+  
+  profileCardImg.addEventListener("mouseleave", () => {
+    profileCardImg.style.transform = "rotateX(0deg) rotateY(0deg)";
   })
 })

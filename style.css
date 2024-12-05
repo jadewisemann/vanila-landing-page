@@ -248,8 +248,8 @@ nav > .nav-item-wrapper {
 
 .nav-item-wrapper > .nav-item {
   margin: 12px 0;
-  font-size: 1.8em;
   text-align: center;
+  font-size: 1.8em;
 }
 
 .social-wrapper {
@@ -313,7 +313,6 @@ nav > .nav-item-wrapper {
   align-items: flex-start;
   padding-left: 12%;
 }
-
 
 .main-text--wrapper > * {
   color: white;

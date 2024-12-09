@@ -210,6 +210,10 @@ body {
   &#about {  background-color: #f8f8f8; }
   
   &#team { background-color: white; }
+
+  &#pricing { background-color: white; }
+
+  &#contact { background-color: black; }
 }
 
 
@@ -374,4 +378,84 @@ body {
   transition: opacity 0.3s ease;
   opacity: 0;
   > * { color: white; }
+}
+
+#contact {
+  justify-content: center;
+  > .contact-wrapper {
+    display: flex;
+    width: 80%;
+    height: 80%;
+    > img {
+      width: 40%;
+    }
+    > .input-wrapper {
+      background-color: white;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h2 {
+        margin-top: 24px;
+        font-size: 2em;
+        font-weight: 500;
+        margin-bottom: 48px;
+      }
+      .input-container {
+        flex-grow: 1;
+        /* background-color: red; */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 60%;
+        gap: 24px;
+        .input-wrapper {
+          width: 100%;
+          .placeholder {
+            width: fit-content;
+            position: relative;
+            bottom: -50%;
+            transition: bottom .2s ease;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+          }
+          input, textarea {
+            cursor: pointer;
+            border: none;
+            border-bottom: 2px dashed black;
+            width: 100%;
+            &:focus {
+              outline: none;
+            }
+          }
+          &:has(input:focus) .placeholder, 
+          &:has(textarea:focus) .placeholder,
+          &:has(input:hover) .placeholder,
+          &:has(textarea:hover) .placeholder {
+            bottom: 0;
+          }
+        }
+        button {
+          border: none;
+          font-size: .9em;
+          letter-spacing: .3em;
+          background-color: goldenrod;
+          color: white;
+          text-transform: uppercase;
+          padding: 12px;
+          width: 100%;
+          box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.26);
+          cursor: pointer;
+          transition: transform .2s ease;
+          &:hover {
+            transform: translateY(-4px);
+          }
+        }
+      }
+      bottom {
+        width: 100%;
+      }
+    }
+  }
 }

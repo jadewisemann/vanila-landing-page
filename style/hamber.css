@@ -1,0 +1,94 @@
+.hamburger {
+  --x-width: calc((var(--hamburger--height))*var(--pi));
+
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: var(--hamburger--gap);
+  width: max-content;
+  top: var(--hamburger--margin);
+  right: var(--hamburger--margin);
+  z-index: 2;
+
+  cursor: pointer;
+
+  transition: translate var(--hamburger--animation-timing);
+}
+
+.hamburger:has(input:checked) {
+  --foreground: #333;
+  --background: white;
+}
+
+.hamburger::after, 
+.hamburger::before,
+.hamburger input {
+  content: "";
+
+  width: var(--hamburger--bar-width);
+  height: var(--hamburger--bar-height);
+  border-radius: 9999px;
+
+  background-color: var(--foreground);
+  opacity: .6;
+
+  transform-origin: left center;
+  transition: 
+    opacity var(--hamburger--animation-timing),
+    width var(--hamburger--animation-timing),
+    rotate var(--hamburger--animation-timing),
+    translate var(--hamburger--animation-timing),
+    background-color var(--hamburger--animation-timing);
+}
+
+.hamburger input {
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  pointer-events: none;
+  transition: 
+    opacity var(--hamburger--animation-timing),
+    width var(--hamburger--animation-timing),
+    rotate var(--hamburger--animation-timing),
+    translate var(--hamburger--animation-timing),
+    background-color var(--hamburger--animation-timing);
+}
+
+.hamburger:has(input:checked)::before {
+  opacity: 1;
+  rotate: 45deg;
+  width: var(--x-width);
+  translate: 0 calc(var(--hamburger--bar-height) / -2);
+}
+
+.hamburger:has(input:checked)::after {
+  opacity: 1;
+  rotate: -45deg;
+  width: var(--x-width);
+  translate: 0 calc(var(--hamburger--bar-height) / 2);
+}
+
+.hamburger:has(input:checked) {
+  translate: calc(var(--sidebar-width) * (-1)
+    + var(--x-width)
+    + var(--hamburger--margin) * 2 
+    ) 0;
+  transition: translate var(--hamburger--animation-timing);
+}
+
+.hamburger input:checked {
+  opacity: 0;
+  width: 0;
+}
+
+.hamburger:has(input:checked) + .sidebar {
+  translate: 0;
+}
+
+.hamburger:has(input:checked:hover) + .sidebar> .close-area {
+  opacity: 1;
+}
+
+.hamburger:has(input:checked):hover::after {
+}

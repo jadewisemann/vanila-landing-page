@@ -74,6 +74,13 @@ const smoothScroll = (targetElements, targetIndex, scrollDuration) => {
   requestAnimationFrame(animateScroll)
 }
 
+// up button
+const upButton = document.querySelector("#up-button")
+upButton.addEventListener("click", () => {
+  smoothScroll(fullPageContainers, 0, scrollDuration)
+  nextIndex = 0
+})
+
 // nav item click to scroll
 const navItems = document.querySelectorAll(".nav-item")
 const inputCheckbox = document.getElementById("input-checkbox")

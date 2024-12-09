@@ -193,6 +193,16 @@ body {
     opacity .8s ease-in-out;
 }
 
+#up-button {
+  position: fixed;
+  display: flex;
+  width: fit-content;
+  bottom: 20px;
+  right: 20px;
+  color: yellow;
+  font-size: 3em;
+}
+
 .full-page--container {
   display: flex;
   flex-direction: column;

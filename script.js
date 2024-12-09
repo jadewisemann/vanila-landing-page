@@ -25,7 +25,8 @@ window.onload = () => {
 // add pagination
 const
   body = document.body,
-  fullPageContainers = document.querySelectorAll(".full-page--container")
+  fullPageContainers = document.querySelectorAll(".full-page--container"),
+  fullPages = [...fullPageContainers, document.querySelector('footer')]
 
 let nextIndex = 0, scrollDuration = 600
 
@@ -34,10 +35,10 @@ body.addEventListener('wheel', event => {
   event.preventDefault()
   
   nextIndex = event.deltaY > 0
-    ? Math.min(nextIndex + 1, fullPageContainers.length - 1)
+    ? Math.min(nextIndex + 1, fullPages.length - 1)
     : Math.max(nextIndex - 1, 0)
 
-  smoothScroll(fullPageContainers, nextIndex, scrollDuration)
+  smoothScroll(fullPages, nextIndex, scrollDuration)
 }, {passive: false})
 
 // scroll animation
@@ -77,7 +78,7 @@ const smoothScroll = (targetElements, targetIndex, scrollDuration) => {
 // up button
 const upButton = document.querySelector("#up-button")
 upButton.addEventListener("click", () => {
-  smoothScroll(fullPageContainers, 0, scrollDuration)
+  smoothScroll(fullPages, 0, scrollDuration)
   nextIndex = 0
 })
 
@@ -87,7 +88,7 @@ const inputCheckbox = document.getElementById("input-checkbox")
 navItems.forEach((navItem, index) => {
   navItem.addEventListener("click", () => {
     inputCheckbox.checked=false
-    smoothScroll(fullPageContainers, index, scrollDuration)
+    smoothScroll(fullPages, index, scrollDuration)
 
   })
 })
